@@ -165,3 +165,18 @@ Response:
 }
    ```
 
+
+## Assumptions 
+
+- A data set is taken as a reference for implementation 
+- Refer /config/config.py for data schema
+- api_key = demo-key or test-key
+
+
+## Deployment
+
+To access this project api go to 
+
+```bash
+  https://assignment-muec.onrender.com
+```
