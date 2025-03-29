@@ -62,6 +62,9 @@ A REST API that processes natural language queries and converts them into databa
 ## Demo queries
 - What is the total amount of sales
 - How many customers do we have?
+- total sales amount last quarter
+- average sales amount in west region
+- list all customers
 
 #### Query Processing Routes
 
