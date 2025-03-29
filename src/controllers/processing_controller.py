@@ -2,6 +2,7 @@ from flask import Blueprint, Flask, Response, json,request, jsonify
 from flask_cors import CORS
 from src.services.query import QueryProcessor
 from src.utils.errors import InvalidQueryError
+from src.middlewares.auth import authenticate
 
 app = Flask(__name__)
 CORS(app,supports_credentials=True)
@@ -17,7 +18,7 @@ def hello():
     )
 
 @processing.route('/query', methods=['POST'])
-# @authenticate
+@authenticate
 def query():
     data = request.get_json()
     if not data or 'query' not in data:
@@ -30,7 +31,7 @@ def query():
         return jsonify({"error": str(e)}), 400
 
 @processing.route('/explain', methods=['POST'])
-# @authenticate
+@authenticate
 def explain():
     data = request.get_json()
     if not data or 'query' not in data:
@@ -40,7 +41,7 @@ def explain():
     return jsonify(explanation)
 
 @processing.route('/validate', methods=['POST'])
-# @authenticate
+@authenticate
 def validate():
     data = request.get_json()
     if not data or 'query' not in data:
@@ -48,3 +49,12 @@ def validate():
     
     validation = QueryProcessor.validate_query(data['query'])
     return jsonify(validation)
+
+
+@processing.route('/protected', methods=['GET'])
+@authenticate
+def protected():
+    return jsonify({
+        "status": "success",
+        "message": "You have access to this protected resource!"
+    }), 200
