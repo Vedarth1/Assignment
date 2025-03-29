@@ -171,6 +171,7 @@ Response:
 - A data set is taken as a reference for implementation 
 - Refer /config/config.py for data schema
 - api_key = demo-key or test-key
+- aslo refer the test queries only mentioned in readme.md for testing
 
 
 ## Deployment
